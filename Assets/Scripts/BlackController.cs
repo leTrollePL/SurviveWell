@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlackController : MonoBehaviour
 {
+    //test
     public Camera Camera = new Camera();
     public GameController GController;
     public GameObject blackPlayer ;
