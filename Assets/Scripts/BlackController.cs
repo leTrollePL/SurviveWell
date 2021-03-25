@@ -192,6 +192,6 @@ public class BlackController : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 0.1f, platforma);
         return raycastHit.collider != null;
-
+        //test
     }
 }
