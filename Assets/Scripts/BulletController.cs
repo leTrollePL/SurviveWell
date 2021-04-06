@@ -6,7 +6,9 @@ public class BulletController : MonoBehaviour
 {
     public float xDiff=0.1f, yDiff=0.1f;
     public GameObject Bullet;
-  //  public bool active = false;
+    [SerializeField] float damage = 25f;
+
+    //  public bool active = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +30,21 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
-
-
-        if (collidingObject.gameObject.layer == 13)
+        if (collidingObject.gameObject.layer != 10)
         {
-            Debug.Log("Bullet got deflected");
-            Destroy(gameObject);
+            var health = collidingObject.GetComponent<Health>();
+            if(health != null)
+            {
+                health.DealDamage(damage);
+            }
+            
         }
+
+        //if (collidingObject.gameObject.layer == 13)
+        //{
+        //    Debug.Log("Bullet got deflected");
+        //    Destroy(gameObject);
+        //}
 
     }
 

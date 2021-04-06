@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WhiteController : MonoBehaviour
 {
-    public GameObject Camera ;
+   // public GameObject Camera ;
     public GameObject whitePlayer ;
     public GameController GController;
     public GameObject blackPlayer;
     public GameObject slash;
-    public Camera CCamera;
+    //public Camera CCamera;
 
     public BoxCollider2D boxCollider2D;
     [SerializeField] public LayerMask platforma;
@@ -20,7 +20,7 @@ public class WhiteController : MonoBehaviour
     public bool canDash = true;
     public bool canSlash = true;
 
-    private float standardCamera;
+   // private float standardCamera;
     public float movespeed = 0;
 
     public int direction = 1;
@@ -35,7 +35,7 @@ public class WhiteController : MonoBehaviour
 
     void Start()
     {
-        standardCamera = CCamera.orthographicSize;
+        //standardCamera = CCamera.orthographicSize;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
     }
     
@@ -107,39 +107,39 @@ public class WhiteController : MonoBehaviour
 
 
         }
-        float scale;
+        //float scale;
 
         whitePlayer.transform.position = new Vector3((whitePlayer.transform.position.x + movespeed), whitePlayer.transform.position.y, whitePlayer.transform.position.z);
-        float playerXdiff = (whitePlayer.transform.position.x + blackPlayer.transform.position.x) / 2;
-        float playerYdiff = (whitePlayer.transform.position.y + blackPlayer.transform.position.y) / 2;
-        Camera.transform.position = new Vector3(playerXdiff,playerYdiff , Camera.transform.position.z);
-        if (Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) > 10 && Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) < 20)
-        {
-            scale =Mathf.Abs(  (whitePlayer.transform.position.x - blackPlayer.transform.position.x)/10f);
-        }
-        else if (Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) < 10 )
-        {
-            scale = 1f;
-        }
-        else
-        {
-            scale = 2f;
-        }
-        float scaleY = 1; 
-        if (Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) > 5 && Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) < 10)
-        {
-            scaleY = Mathf.Abs((whitePlayer.transform.position.y - blackPlayer.transform.position.y) / 5f);
-        }
-        else if (Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) < 5)
-        {
-            scaleY = 1f;
-        }
-        else
-        {
-            scaleY = 2f;
-        }
-        scale = (scale + scaleY) / 2f;
-        CCamera.orthographicSize = standardCamera*scale;
+        //float playerXdiff = (whitePlayer.transform.position.x + blackPlayer.transform.position.x) / 2;
+        //float playerYdiff = (whitePlayer.transform.position.y + blackPlayer.transform.position.y) / 2;
+        //Camera.transform.position = new Vector3(playerXdiff,playerYdiff , Camera.transform.position.z);
+        //if (Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) > 10 && Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) < 20)
+        //{
+        //    scale =Mathf.Abs(  (whitePlayer.transform.position.x - blackPlayer.transform.position.x)/10f);
+        //}
+        //else if (Mathf.Abs(whitePlayer.transform.position.x - blackPlayer.transform.position.x) < 10 )
+        //{
+        //    scale = 1f;
+        //}
+        //else
+        //{
+        //    scale = 2f;
+        //}
+        //float scaleY = 1; 
+        //if (Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) > 5 && Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) < 10)
+        //{
+        //    scaleY = Mathf.Abs((whitePlayer.transform.position.y - blackPlayer.transform.position.y) / 5f);
+        //}
+        //else if (Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) < 5)
+        //{
+        //    scaleY = 1f;
+        //}
+        //else
+        //{
+        //    scaleY = 2f;
+        //}
+        //scale = (scale + scaleY) / 2f;
+        //CCamera.orthographicSize = standardCamera*scale;
         
 
         if (movespeed > 0)
