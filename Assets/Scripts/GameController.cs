@@ -6,4 +6,5 @@ public class GameController : MonoBehaviour
 {
        public  BlackController BController;
        public  WhiteController WController;
+    public Camera camera;
 }
