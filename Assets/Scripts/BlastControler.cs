@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BlastControler : MonoBehaviour
 {
+    public GameObject Black;
     [SerializeField] float damage = 50f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,24 @@ public class BlastControler : MonoBehaviour
     {
         if (collidingObject.gameObject.layer != 10)
         {
-            var health = collidingObject.GetComponent<Health>();
-            if (health != null)
+            if (collidingObject.gameObject.layer == 9)
             {
-                health.DealDamage(damage);
+                var health = Black.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
             }
+            else
+            {
+                var health = collidingObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
+            }
+
+
         }
     }
 }

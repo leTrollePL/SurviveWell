@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 {
     public float xDiff=0.1f, yDiff=0.1f;
     public GameObject Bullet;
+    public GameObject Black;
     [SerializeField] float damage = 25f;
 
     //  public bool active = false;
@@ -30,13 +31,25 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
-        if (collidingObject.gameObject.layer != 10)
+        if(collidingObject.gameObject.layer != 10)
         {
-            var health = collidingObject.GetComponent<Health>();
-            if(health != null)
+            if(collidingObject.gameObject.layer == 9)
             {
-                health.DealDamage(damage);
+                var health = Black.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
             }
+            else
+            {
+                var health = collidingObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
+            }
+            
             
         }
 

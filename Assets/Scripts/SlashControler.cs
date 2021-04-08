@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlashControler : MonoBehaviour
 {
+    public GameObject White;
     [SerializeField] float damage = 40f;
     // Start is called before the first frame update
     void Start()
@@ -18,12 +19,24 @@ public class SlashControler : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
+
         if (collidingObject.gameObject.layer != 9)
         {
-            var health = collidingObject.GetComponent<Health>();
-            if (health != null)
+            if (collidingObject.gameObject.layer == 10)
             {
-                health.DealDamage(damage);
+                var health = White.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
+            }
+            else
+            {
+                var health = collidingObject.GetComponent<Health>();
+                if (health != null)
+                {
+                    health.DealDamage(damage);
+                }
             }
         }
     }
