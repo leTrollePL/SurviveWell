@@ -37,13 +37,13 @@ public class BlackController : MonoBehaviour
     public int cannonTimer = 0;
     public int cannonCD = 500;
 
-    void Start()
+  void Start()
     {
         shotReady = true;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
     }
     
-    void Update()
+ void Update()
     {
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -177,7 +177,7 @@ public class BlackController : MonoBehaviour
         if (collidingObject.gameObject.layer == 13 )
         {
             Debug.Log("Black got hit by a slash");
-            GController.WController.lives--;
+          //  GController.WController.lives--;
         }
        
 

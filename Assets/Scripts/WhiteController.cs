@@ -212,7 +212,7 @@ public class WhiteController : MonoBehaviour
             diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
             this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 125);
             movespeed += diff.x * 0.05f;
-            GController.BController.lives--;
+           // GController.BController.lives--;
 
         }
         if (collidingObject.gameObject.layer == 14 && hittable)
@@ -223,7 +223,7 @@ public class WhiteController : MonoBehaviour
             diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
             this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
             movespeed += diff.x * 0.05f;
-            GController.BController.lives--;
+         //   GController.BController.lives--;
             Destroy(collidingObject.gameObject);
 
         }
