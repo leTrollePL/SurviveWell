@@ -50,23 +50,29 @@ public class BlackController : MonoBehaviour
         {
             if (movespeed > -0.03f)
                 movespeed -= 0.001f;
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
 
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (movespeed < 0.03f)
                 movespeed += 0.001f;
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -1);
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
 
         }
         if (Input.GetKey(KeyCode.UpArrow) && Grounded())
         {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 9, ForceMode2D.Impulse);
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -87,6 +93,8 @@ public class BlackController : MonoBehaviour
                 Blast.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
                 magazine = 0;
             }
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+
         }
         if (Input.GetMouseButtonDown(0) )
         {
@@ -124,6 +132,7 @@ public class BlackController : MonoBehaviour
                 cannonCD = 500;
                 cannonTimer = 0;
             }
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
         }
 
         if (Input.GetMouseButtonDown(2) )
@@ -131,10 +140,11 @@ public class BlackController : MonoBehaviour
             weapon++;
             if (weapon > 1)
                 weapon = 0;
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+
         }
 
 
-        blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
 
         if (movespeed > 0)
             movespeed -= 0.0001f;
@@ -172,7 +182,12 @@ public class BlackController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
+        if (collidingObject.tag == "MovingPlatform")
+        {
+            Debug.Log("Black step on");
 
+            this.transform.parent = collidingObject.transform;
+        }
 
         if (collidingObject.gameObject.layer == 13 )
         {
@@ -181,6 +196,16 @@ public class BlackController : MonoBehaviour
         }
        
 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "MovingPlatform")
+        {
+            Debug.Log("Black step off");
+
+            this.transform.parent = null;
+        }
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)

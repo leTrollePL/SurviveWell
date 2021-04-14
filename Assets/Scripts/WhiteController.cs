@@ -196,8 +196,12 @@ public class WhiteController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
+        if (collidingObject.tag == "MovingPlatform")
+        {
+            Debug.Log("White step on");
+            this.transform.parent = collidingObject.transform;
+        }
 
-       
         if (collidingObject.gameObject.layer == 11 && hittable)
         {
             Debug.Log("White got hit by bullet");
@@ -230,6 +234,14 @@ public class WhiteController : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag=="MovingPlatform")
+        {
+            Debug.Log("White step off");
+            this.transform.parent = null;
+        }
+    }
     public bool Grounded()
     {
         RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 0.1f, platforma);
