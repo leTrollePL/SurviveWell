@@ -35,6 +35,9 @@ public class WhiteController : MonoBehaviour
     public int slashCD = 150;
     public int lives = 3;
 
+    public Animator animator;
+
+
     void Start()
     {
         //standardCamera = CCamera.orthographicSize;
@@ -51,21 +54,27 @@ public class WhiteController : MonoBehaviour
             direction = -1;
 
 
+            animator.SetFloat("isSpeed",movespeed * -1);
         }
         if (Input.GetKey("d"))
         {
             if (movespeed < 0.03f)
                 movespeed += 0.001f;
             direction = 1;
-
+            animator.SetFloat("isSpeed", movespeed);
         }
         if (Input.GetKey("s"))
         {
             this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -1);
+            animator.SetBool("isSliding", true);
 
         }
-        if (Input.GetKey("w") && Grounded())
+        else {
+            animator.SetBool("isSliding", false);
+        }
+        if (Input.GetKey("w") && Grounded()==true)
         {
+            animator.SetBool("Jump", true);
             if (betterjump)
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
@@ -77,8 +86,13 @@ public class WhiteController : MonoBehaviour
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
                 this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+                
+
             }
 
+        }
+        else if(Grounded()==true){
+            animator.SetBool("Jump", false);
         }
         if (Input.GetKey(KeyCode.LeftShift) && canDash)
         {
@@ -93,6 +107,8 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && canSlash)
         {
+            animator.SetTrigger("isAttacking");
+
             if (betterslash)
             {
                 if (Input.GetKey("s"))
@@ -229,6 +245,7 @@ public class WhiteController : MonoBehaviour
             }
         }
 
+                whitePlayer.transform.localScale = new Vector3(Mathf.Abs(whitePlayer.transform.localScale.x) * direction, whitePlayer.transform.localScale.y, whitePlayer.transform.localScale.z);
 
     }
 
