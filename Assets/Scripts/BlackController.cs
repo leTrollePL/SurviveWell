@@ -20,6 +20,8 @@ public class BlackController : MonoBehaviour
     public bool canJump=true;
     public bool shotReady = true;
     public bool cannonShotReady = true;
+    public bool betterjump = false;
+    public bool bettercannon = false;
 
     public float movespeed = 0;
     
@@ -68,10 +70,19 @@ public class BlackController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow) && Grounded())
         {
+            if (betterjump)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
+                this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+            }
+            else
+            {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
                 this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 9, ForceMode2D.Impulse);
-            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+                blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+            }
 
         }
         if (Input.GetMouseButtonDown(1))
@@ -117,6 +128,25 @@ public class BlackController : MonoBehaviour
                 shotCountdown = 200;
             } else if (cannonShotReady && weapon == 1)
             {
+                if (bettercannon)
+                {
+                    Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
+                    Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
+                    Vector2 diff = new Vector2(blackPos.x - mousePos.x, blackPos.y - mousePos.y);
+                    diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+                    cannonShotReady = false;
+                    this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
+                    movespeed += diff.x * 0.015f;
+                    Ccontrol.xDiff = -diff.x;
+                    Ccontrol.yDiff = -diff.y;
+                    GameObject CannonClone = Instantiate(Cannon, blackPlayer.transform.position, Quaternion.identity);
+                    CannonClone.SetActive(true);
+
+                    cannonCD = 25;
+                    cannonTimer = 0;
+                }
+                else
+                { 
                 Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
                 Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
                 Vector2 diff = new Vector2(blackPos.x - mousePos.x, blackPos.y - mousePos.y);
@@ -131,6 +161,7 @@ public class BlackController : MonoBehaviour
 
                 cannonCD = 500;
                 cannonTimer = 0;
+                }
             }
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
         }

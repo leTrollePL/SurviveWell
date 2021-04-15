@@ -19,8 +19,10 @@ public class WhiteController : MonoBehaviour
     public bool hittable = true;
     public bool canDash = true;
     public bool canSlash = true;
+    public bool betterjump = false;
+    public bool betterslash = false;
 
-   // private float standardCamera;
+    // private float standardCamera;
     public float movespeed = 0;
 
     public int direction = 1;
@@ -64,9 +66,18 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey("w") && Grounded())
         {
+            if (betterjump)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
+                this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+            }
+            else
+            {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
             this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+            }
 
         }
         if (Input.GetKey(KeyCode.LeftShift)&& canDash)
@@ -82,6 +93,33 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space)&& canSlash )
         {
+            if (betterslash)
+            {
+                if (Input.GetKey("s") )
+                {
+               
+                slashCD = 180;
+                slashOffset = new Vector3(0, -1, 0);
+                this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -50);
+                }
+                else if (Input.GetKey("w") )
+                {
+                    slashCD = 350;
+                    slashOffset = new Vector3(0, 2, 0);
+                    this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * 50);
+                }
+                else
+                {
+                    slashCD = 120;
+                    slashOffset = new Vector3(0, 0, 0);
+              
+                }
+                canSlash = false;
+                slash.SetActive(true);
+                slash.transform.localScale = new Vector3(Mathf.Abs(slash.transform.localScale.x) * direction, slash.transform.localScale.y, slash.transform.localScale.z);
+            }
+            else
+            {
             if (Input.GetKey("s") )
             {
                
@@ -105,7 +143,7 @@ public class WhiteController : MonoBehaviour
             slash.SetActive(true);
             slash.transform.localScale = new Vector3(Mathf.Abs(slash.transform.localScale.x) * direction, slash.transform.localScale.y, slash.transform.localScale.z);
 
-
+            }
         }
         //float scale;
 
