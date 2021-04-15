@@ -6,6 +6,7 @@ public class SlashControler : MonoBehaviour
 {
     public GameObject White;
     [SerializeField] float damage = 40f;
+    public float damageMultiplier = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class SlashControler : MonoBehaviour
                 var health = White.GetComponent<Health>();
                 if (health != null)
                 {
-                    health.DealDamage(damage);
+                    health.DealDamage(damage * damageMultiplier);
                 }
             }
             else
@@ -35,7 +36,7 @@ public class SlashControler : MonoBehaviour
                 var health = collidingObject.GetComponent<Health>();
                 if (health != null)
                 {
-                    health.DealDamage(damage);
+                    health.DealDamage(damage * damageMultiplier);
                 }
             }
         }

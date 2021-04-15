@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WhiteController : MonoBehaviour
 {
-   // public GameObject Camera ;
-    public GameObject whitePlayer ;
+    // public GameObject Camera ;
+    public GameObject whitePlayer;
     public GameController GController;
     public GameObject blackPlayer;
     public GameObject slash;
@@ -19,8 +19,10 @@ public class WhiteController : MonoBehaviour
     public bool hittable = true;
     public bool canDash = true;
     public bool canSlash = true;
+    public bool betterjump = false;
+    public bool betterslash = false;
 
-   // private float standardCamera;
+    // private float standardCamera;
     public float movespeed = 0;
 
     public int direction = 1;
@@ -38,16 +40,16 @@ public class WhiteController : MonoBehaviour
         //standardCamera = CCamera.orthographicSize;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
     }
-    
+
     void Update()
     {
-       
+
         if (Input.GetKey("a"))
         {
-            if (movespeed>-0.03f)
-            movespeed -= 0.001f;
+            if (movespeed > -0.03f)
+                movespeed -= 0.001f;
             direction = -1;
-           
+
 
         }
         if (Input.GetKey("d"))
@@ -55,7 +57,7 @@ public class WhiteController : MonoBehaviour
             if (movespeed < 0.03f)
                 movespeed += 0.001f;
             direction = 1;
-          
+
         }
         if (Input.GetKey("s"))
         {
@@ -64,48 +66,84 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey("w") && Grounded())
         {
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
-            this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-            this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
-
-        }
-        if (Input.GetKey(KeyCode.LeftShift)&& canDash)
-        {
-           
-                canDash = false;
-                movespeed += direction * 0.1f;
-                dashCDTimer = 0;
-                dashTimer = 0;
-                dashDirection = direction;
-                hittable = false;
-            
-        }
-        if (Input.GetKey(KeyCode.Space)&& canSlash )
-        {
-            if (Input.GetKey("s") )
+            if (betterjump)
             {
-               
-                slashCD = 180;
-                slashOffset = new Vector3(0, -1, 0);
-                this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -50);
-            }
-            else if (Input.GetKey("w") )
-            {
-                slashCD = 350;
-                slashOffset = new Vector3(0, 2, 0);
-                this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * 50);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
+                this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
             }
             else
             {
-                slashCD = 120;
-                slashOffset = new Vector3(0, 0, 0);
-              
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
+                this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
             }
-            canSlash = false;
-            slash.SetActive(true);
-            slash.transform.localScale = new Vector3(Mathf.Abs(slash.transform.localScale.x) * direction, slash.transform.localScale.y, slash.transform.localScale.z);
 
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && canDash)
+        {
 
+            canDash = false;
+            movespeed += direction * 0.1f;
+            dashCDTimer = 0;
+            dashTimer = 0;
+            dashDirection = direction;
+            hittable = false;
+
+        }
+        if (Input.GetKey(KeyCode.Space) && canSlash)
+        {
+            if (betterslash)
+            {
+                if (Input.GetKey("s"))
+                {
+
+                    slashCD = 180;
+                    slashOffset = new Vector3(0, -1, 0);
+                    this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -50);
+                }
+                else if (Input.GetKey("w"))
+                {
+                    slashCD = 350;
+                    slashOffset = new Vector3(0, 2, 0);
+                    this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * 50);
+                }
+                else
+                {
+                    slashCD = 120;
+                    slashOffset = new Vector3(0, 0, 0);
+
+                }
+                canSlash = false;
+                slash.SetActive(true);
+                slash.transform.localScale = new Vector3(Mathf.Abs(slash.transform.localScale.x) * direction, slash.transform.localScale.y, slash.transform.localScale.z);
+            }
+            else
+            {
+                if (Input.GetKey("s"))
+                {
+
+                    slashCD = 180;
+                    slashOffset = new Vector3(0, -1, 0);
+                    this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -50);
+                }
+                else if (Input.GetKey("w"))
+                {
+                    slashCD = 350;
+                    slashOffset = new Vector3(0, 2, 0);
+                    this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * 50);
+                }
+                else
+                {
+                    slashCD = 120;
+                    slashOffset = new Vector3(0, 0, 0);
+
+                }
+                canSlash = false;
+                slash.SetActive(true);
+                slash.transform.localScale = new Vector3(Mathf.Abs(slash.transform.localScale.x) * direction, slash.transform.localScale.y, slash.transform.localScale.z);
+
+            }
         }
         //float scale;
 
@@ -140,17 +178,17 @@ public class WhiteController : MonoBehaviour
         //}
         //scale = (scale + scaleY) / 2f;
         //CCamera.orthographicSize = standardCamera*scale;
-        
+
 
         if (movespeed > 0)
             movespeed -= 0.0001f;
-       else if (movespeed < 0)
+        else if (movespeed < 0)
             movespeed += 0.0001f;
 
         if (movespeed < 0.0001f && movespeed > -0.0001f)
             movespeed = 0;
 
-        if (canDash==false)
+        if (canDash == false)
         {
             if (dashTimer < dashTime)
             {
@@ -161,7 +199,7 @@ public class WhiteController : MonoBehaviour
                 dashTimer++;
                 movespeed -= dashDirection * 0.08f;
             }
-                else
+            else
                 hittable = true;
 
 
@@ -170,14 +208,14 @@ public class WhiteController : MonoBehaviour
             else
 
                 canDash = true;
-                
+
         }
 
-        
 
-        if (canSlash==false)
+
+        if (canSlash == false)
         {
-            slash.transform.position = whitePlayer.transform.position+slashOffset;
+            slash.transform.position = whitePlayer.transform.position + slashOffset;
             if (slashTimer < slashCD)
                 slashTimer++;
             else
@@ -190,7 +228,7 @@ public class WhiteController : MonoBehaviour
                 slash.SetActive(false);
             }
         }
-       
+
 
     }
 
@@ -212,11 +250,11 @@ public class WhiteController : MonoBehaviour
         {
             Debug.Log("White got hit by blast");
             float blastX = collidingObject.transform.position.x, blastY = collidingObject.transform.position.y;
-            Vector2 diff = new Vector2(  whitePlayer.transform.position.x - blastX,  whitePlayer.transform.position.y - blastY);
+            Vector2 diff = new Vector2(whitePlayer.transform.position.x - blastX, whitePlayer.transform.position.y - blastY);
             diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
             this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 125);
             movespeed += diff.x * 0.05f;
-           // GController.BController.lives--;
+            // GController.BController.lives--;
 
         }
         if (collidingObject.gameObject.layer == 14 && hittable)
@@ -227,7 +265,7 @@ public class WhiteController : MonoBehaviour
             diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
             this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
             movespeed += diff.x * 0.05f;
-         //   GController.BController.lives--;
+            //   GController.BController.lives--;
             Destroy(collidingObject.gameObject);
 
         }
@@ -236,7 +274,7 @@ public class WhiteController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag=="MovingPlatform")
+        if (collision.tag == "MovingPlatform")
         {
             Debug.Log("White step off");
             this.transform.parent = null;

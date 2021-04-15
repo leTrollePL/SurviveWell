@@ -6,9 +6,9 @@ public class BlackController : MonoBehaviour
 {
     public Camera Camera = new Camera();
     public GameController GController;
-    public GameObject blackPlayer ;
+    public GameObject blackPlayer;
     public GameObject Bullet;
-    public GameObject whitePlayer ;
+    public GameObject whitePlayer;
     public BulletController Bcontrol;
     public GameObject Blast;
     public GameObject Cannon;
@@ -17,12 +17,14 @@ public class BlackController : MonoBehaviour
     public BoxCollider2D boxCollider2D;
     [SerializeField] public LayerMask platforma;
 
-    public bool canJump=true;
+    public bool canJump = true;
     public bool shotReady = true;
     public bool cannonShotReady = true;
+    public bool betterjump = false;
+    public bool bettercannon = false;
 
     public float movespeed = 0;
-    
+
     public int magazine = 2;
     public int canJumpTimer = 0;
     public int singleShotCountdown = 50;
@@ -37,13 +39,13 @@ public class BlackController : MonoBehaviour
     public int cannonTimer = 0;
     public int cannonCD = 500;
 
-  void Start()
+    void Start()
     {
         shotReady = true;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
     }
-    
- void Update()
+
+    void Update()
     {
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -68,10 +70,19 @@ public class BlackController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow) && Grounded())
         {
+            if (betterjump)
+            {
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
+                this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+            }
+            else
+            {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
                 this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 9, ForceMode2D.Impulse);
-            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+                blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+            }
 
         }
         if (Input.GetMouseButtonDown(1))
@@ -96,7 +107,7 @@ public class BlackController : MonoBehaviour
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
 
         }
-        if (Input.GetMouseButtonDown(0) )
+        if (Input.GetMouseButtonDown(0))
         {
             if (shotReady && magazine > 0 && weapon == 0)
             {
@@ -115,27 +126,48 @@ public class BlackController : MonoBehaviour
                 magazine--;
                 singleShotCountdown = 50;
                 shotCountdown = 200;
-            } else if (cannonShotReady && weapon == 1)
+            }
+            else if (cannonShotReady && weapon == 1)
             {
-                Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
-                Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
-                Vector2 diff = new Vector2(blackPos.x - mousePos.x, blackPos.y - mousePos.y);
-                diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
-                cannonShotReady = false;
-                this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
-                movespeed += diff.x * 0.015f;
-                Ccontrol.xDiff = -diff.x;
-                Ccontrol.yDiff = -diff.y;
-                GameObject CannonClone = Instantiate(Cannon, blackPlayer.transform.position, Quaternion.identity);
-                CannonClone.SetActive(true);
+                if (bettercannon)
+                {
+                    Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
+                    Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
+                    Vector2 diff = new Vector2(blackPos.x - mousePos.x, blackPos.y - mousePos.y);
+                    diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+                    cannonShotReady = false;
+                    this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
+                    movespeed += diff.x * 0.015f;
+                    Ccontrol.xDiff = -diff.x;
+                    Ccontrol.yDiff = -diff.y;
+                    GameObject CannonClone = Instantiate(Cannon, blackPlayer.transform.position, Quaternion.identity);
+                    CannonClone.SetActive(true);
 
-                cannonCD = 500;
-                cannonTimer = 0;
+                    cannonCD = 25;
+                    cannonTimer = 0;
+                }
+                else
+                {
+                    Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
+                    Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
+                    Vector2 diff = new Vector2(blackPos.x - mousePos.x, blackPos.y - mousePos.y);
+                    diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+                    cannonShotReady = false;
+                    this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * diff.y * 200);
+                    movespeed += diff.x * 0.015f;
+                    Ccontrol.xDiff = -diff.x;
+                    Ccontrol.yDiff = -diff.y;
+                    GameObject CannonClone = Instantiate(Cannon, blackPlayer.transform.position, Quaternion.identity);
+                    CannonClone.SetActive(true);
+
+                    cannonCD = 500;
+                    cannonTimer = 0;
+                }
             }
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
         }
 
-        if (Input.GetMouseButtonDown(2) )
+        if (Input.GetMouseButtonDown(2))
         {
             weapon++;
             if (weapon > 1)
@@ -154,14 +186,14 @@ public class BlackController : MonoBehaviour
         if (movespeed < 0.0001f && movespeed > -0.0001f)
             movespeed = 0;
 
-        if (magazine<2)
+        if (magazine < 2)
         {
             shotTimer++;
             if (shotTimer == 20)
                 Blast.SetActive(false);
             if (shotTimer == singleShotCountdown && magazine > 0)
                 shotReady = true;
-            if (shotTimer>shotCountdown)
+            if (shotTimer > shotCountdown)
             {
                 shotReady = true;
                 shotTimer = 0;
@@ -189,12 +221,12 @@ public class BlackController : MonoBehaviour
             this.transform.parent = collidingObject.transform;
         }
 
-        if (collidingObject.gameObject.layer == 13 )
+        if (collidingObject.gameObject.layer == 13)
         {
             Debug.Log("Black got hit by a slash");
-          //  GController.WController.lives--;
+            //  GController.WController.lives--;
         }
-       
+
 
     }
 
