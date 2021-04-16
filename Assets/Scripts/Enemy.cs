@@ -14,6 +14,10 @@ public class Enemy : MonoBehaviour
         if (GetComponent<Renderer>().isVisible)
         {
             Vector3 direction = getShortestPath();
+            if (direction.x > 0)
+                this.GetComponent<SpriteRenderer>().flipX = false;
+            else
+                this.GetComponent<SpriteRenderer>().flipX = true;
             direction =direction/ ( 7 * Mathf.Sqrt(direction.x*direction.x+direction.y*direction.y));
             GetComponent<Rigidbody2D>().AddForce(direction);
         }

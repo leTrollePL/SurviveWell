@@ -15,8 +15,12 @@ public class FlyingEnemyShooter : Enemy
     {
         if (GetComponent<Renderer>().isVisible)
         {
-
+            
             Vector3 direction = getShortestPath();
+            if (direction.x > 0)
+                this.GetComponent<SpriteRenderer>().flipX = false;
+            else
+                this.GetComponent<SpriteRenderer>().flipX = true;
             if (shotTimer == shotReset)
             {
 

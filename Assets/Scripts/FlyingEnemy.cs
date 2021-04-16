@@ -13,6 +13,10 @@ public class FlyingEnemy : Enemy
         if (GetComponent<Renderer>().isVisible)
         {
             Vector3 direction = getShortestPath();
+            if (direction.x > 0)
+                this.GetComponent<SpriteRenderer>().flipX = true;
+            else
+                this.GetComponent<SpriteRenderer>().flipX = false;
             direction /= 50 * direction.magnitude;
             GetComponent<Transform>().position+=direction;
         }
