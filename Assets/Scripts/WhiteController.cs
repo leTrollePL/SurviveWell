@@ -35,6 +35,9 @@ public class WhiteController : MonoBehaviour
     public int slashCD = 150;
     public int lives = 3;
 
+    public float waitTime = 0.2f;
+    private bool jestNaPlatformie = false;
+
     void Start()
     {
         //standardCamera = CCamera.orthographicSize;
@@ -63,6 +66,23 @@ public class WhiteController : MonoBehaviour
         {
             this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -1);
 
+            if (Input.GetKey("s") && jestNaPlatformie == true)
+            {
+                if (waitTime <= 0)
+                {
+                    boxCollider2D.isTrigger = true;
+                    waitTime = 0.5f;
+                }
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
+            }
+
+        }
+        if (Input.GetKeyUp("s"))
+        {
+            waitTime = 0.5f;
         }
         if (Input.GetKey("w") && Grounded())
         {
@@ -234,6 +254,11 @@ public class WhiteController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
+        if (collidingObject.tag == "Platforma" || collidingObject.tag == "MovingPlatform")
+        {
+            jestNaPlatformie = true;
+        }
+
         if (collidingObject.tag == "MovingPlatform")
         {
             Debug.Log("White step on");
@@ -274,11 +299,18 @@ public class WhiteController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.tag == "Platforma" || collision.tag == "MovingPlatform")
+        {
+            boxCollider2D.isTrigger = false;
+            jestNaPlatformie = false;
+        }
+
         if (collision.tag == "MovingPlatform")
         {
             Debug.Log("White step off");
             this.transform.parent = null;
         }
+
     }
     public bool Grounded()
     {
