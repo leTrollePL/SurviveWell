@@ -44,6 +44,8 @@ public class BlackController : MonoBehaviour
 
 
    
+    public float waitTime = 0.2f;
+    private bool jestNaPlatformie = false;
 
     void Start()
     {
@@ -73,8 +75,25 @@ public class BlackController : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
         {
             this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -1);
-            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+            if (Input.GetKey(KeyCode.DownArrow) && jestNaPlatformie==true)
+            {
+                if (waitTime <= 0)
+                {
+                    boxCollider2D.isTrigger = true;
+                    waitTime = 0.5f;
+                }
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
+            }
 
+            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+        }
+
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            waitTime = 0.5f;
         }
         if (Input.GetKey(KeyCode.UpArrow) && Grounded())
         {
@@ -242,6 +261,11 @@ public class BlackController : MonoBehaviour
             //  GController.WController.lives--;
         }
 
+        if (collidingObject.tag == "Platforma" || collidingObject.tag == "MovingPlatform")
+        {
+            jestNaPlatformie = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -251,6 +275,12 @@ public class BlackController : MonoBehaviour
             Debug.Log("Black step off");
 
             this.transform.parent = null;
+        }
+
+        if (collision.tag == "Platforma" || collision.tag == "MovingPlatform")
+        {
+            boxCollider2D.isTrigger = false;
+            jestNaPlatformie = false;
         }
     }
 

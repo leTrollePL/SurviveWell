@@ -26,6 +26,7 @@ public class SlashControler : MonoBehaviour
             if (collidingObject.gameObject.layer == 10)
             {
                 var health = White.GetComponent<Health>();
+                White.GetComponent<PlayerMoney>().SubbMoney(5);
                 if (health != null)
                 {
                     health.DealDamage(damage * damageMultiplier);

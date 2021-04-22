@@ -8,12 +8,17 @@ public class Enemy : MonoBehaviour
     public GameController GController;
     public GameObject enemyObject;
     public int damage=20;
+    public int moneyWorth = 5;
 
     public virtual void Update()
     { 
         if (GetComponent<Renderer>().isVisible)
         {
             Vector3 direction = getShortestPath();
+            if (direction.x > 0)
+                this.GetComponent<SpriteRenderer>().flipX = false;
+            else
+                this.GetComponent<SpriteRenderer>().flipX = true;
             direction =direction/ ( 7 * Mathf.Sqrt(direction.x*direction.x+direction.y*direction.y));
             GetComponent<Rigidbody2D>().AddForce(direction);
         }
