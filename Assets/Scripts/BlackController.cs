@@ -14,6 +14,8 @@ public class BlackController : MonoBehaviour
     public GameObject Cannon;
     public BulletController Ccontrol;
 
+    public Animator animator;
+
     public BoxCollider2D boxCollider2D;
     [SerializeField] public LayerMask platforma;
 
@@ -31,6 +33,7 @@ public class BlackController : MonoBehaviour
     public int shotCountdown = 0;
     public int shotTimer = 0;
     public int jumpCD = 300;
+    public int direction = 1;
 
 
     public int weapon = 0;
@@ -38,6 +41,9 @@ public class BlackController : MonoBehaviour
 
     public int cannonTimer = 0;
     public int cannonCD = 500;
+
+
+   
 
     void Start()
     {
@@ -53,14 +59,16 @@ public class BlackController : MonoBehaviour
             if (movespeed > -0.03f)
                 movespeed -= 0.001f;
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
-
+            direction = -1;
+            animator.SetFloat("isSpeed", movespeed * -1);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (movespeed < 0.03f)
                 movespeed += 0.001f;
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
-
+            direction = 1;
+            animator.SetFloat("isSpeed", movespeed);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
@@ -70,6 +78,7 @@ public class BlackController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow) && Grounded())
         {
+            animator.SetBool("Jump", true);
             if (betterjump)
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
@@ -84,6 +93,10 @@ public class BlackController : MonoBehaviour
                 blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
             }
 
+        }
+        else if (Grounded() == true)
+        {
+            animator.SetBool("Jump", false);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -210,6 +223,8 @@ public class BlackController : MonoBehaviour
             }
         }
         Blast.transform.position = blackPlayer.transform.position;
+        blackPlayer.transform.localScale = new Vector3(Mathf.Abs(blackPlayer.transform.localScale.x) * direction, blackPlayer.transform.localScale.y, blackPlayer.transform.localScale.z);
+
     }
 
     void OnTriggerEnter2D(Collider2D collidingObject)
@@ -226,7 +241,6 @@ public class BlackController : MonoBehaviour
             Debug.Log("Black got hit by a slash");
             //  GController.WController.lives--;
         }
-
 
     }
 
