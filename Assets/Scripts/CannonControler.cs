@@ -25,6 +25,7 @@ public class CannonControler : MonoBehaviour
             if (collidingObject.gameObject.layer == 9)
             {
                 var health = Black.GetComponent<Health>();
+                Black.GetComponent<PlayerMoney>().SubbMoney(5);
                 if (health != null)
                 {
                     health.DealDamage(damage);
