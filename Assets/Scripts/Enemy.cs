@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameController GController;
     public GameObject enemyObject;
     public int damage=20;
+    public int moneyWorth = 5;
 
     public virtual void Update()
     { 

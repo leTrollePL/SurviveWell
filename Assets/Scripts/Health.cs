@@ -6,8 +6,13 @@ public class Health : MonoBehaviour
 {
     [SerializeField] float health = 100f;
 
+
     public float maxHealth;
     public float currentHealth;
+
+    public Transform dropPoint;
+    public bool drops;
+    public GameObject theDrops;
 
     public void DealDamage(float damage)
     {
@@ -21,6 +26,7 @@ public class Health : MonoBehaviour
             }
             else
             {
+                if (drops) Instantiate(theDrops, dropPoint.position, dropPoint.rotation);
                 Destroy(gameObject);
             }
 
