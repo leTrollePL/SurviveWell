@@ -79,7 +79,7 @@ public class BlackController : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
         {
             animator.SetBool("isSliding", true);
-            this.GetComponent<Rigidbody2D>().AddForce(whitePlayer.transform.up * -1);
+            this.GetComponent<Rigidbody2D>().AddForce(blackPlayer.transform.up * -1);
             if (Input.GetKey(KeyCode.DownArrow) && jestNaPlatformie==true)
             {
                 if (waitTime <= 0)
@@ -93,7 +93,7 @@ public class BlackController : MonoBehaviour
                 }
             }
 
-            blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
+            //blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
         }else{
             animator.SetBool("isSliding", false);
         }

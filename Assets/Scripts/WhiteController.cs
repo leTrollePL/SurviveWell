@@ -87,15 +87,18 @@ public class WhiteController : MonoBehaviour
                     waitTime -= Time.deltaTime;
                 }
             }
-            waitTime = 0.5f;
+            
         }
         else
         {
             animator.SetBool("isSliding", false);
         }
-        
-        
-        if (Input.GetKey("w") && Grounded()==true)
+        if (Input.GetKey("s")) {
+            waitTime = 0.5f;
+        }
+
+
+            if (Input.GetKey("w") && Grounded()==true)
         {
             animator.SetBool("Jump", true);
             if (betterjump)
@@ -119,6 +122,7 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift) && canDash)
         {
+            animator.SetBool("isDash", true);
 
             canDash = false;
             movespeed += direction * 0.1f;
@@ -127,6 +131,9 @@ public class WhiteController : MonoBehaviour
             dashDirection = direction;
             hittable = false;
 
+        }
+        if (!Input.GetKey(KeyCode.LeftShift) ){
+            animator.SetBool("isDash", false);
         }
         if (Input.GetKey(KeyCode.Space) && canSlash)
         {
