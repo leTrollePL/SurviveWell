@@ -94,8 +94,7 @@ public class BlackController : MonoBehaviour
             }
 
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
-        }else
-        {
+        }else{
             animator.SetBool("isSliding", false);
         }
 
