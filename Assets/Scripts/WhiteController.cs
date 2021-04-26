@@ -57,14 +57,18 @@ public class WhiteController : MonoBehaviour
             direction = -1;
 
 
-            animator.SetFloat("isSpeed",movespeed * -1);
+            animator.SetFloat("isSpeed", movespeed * -100);
         }
+        
         if (Input.GetKey("d"))
         {
             if (movespeed < 0.03f)
                 movespeed += 0.001f;
             direction = 1;
-            animator.SetFloat("isSpeed", movespeed);
+            animator.SetFloat("isSpeed", movespeed * 100);
+        }
+        if(!Input.GetKey("d")&& !Input.GetKey("a")) {
+            animator.SetFloat("isSpeed", 0);
         }
         if (Input.GetKey("s"))
         {
@@ -83,19 +87,18 @@ public class WhiteController : MonoBehaviour
                     waitTime -= Time.deltaTime;
                 }
             }
-
+            
         }
-        
-        else {
+        else
+        {
             animator.SetBool("isSliding", false);
         }
-
         if (Input.GetKey("s")) {
             waitTime = 0.5f;
         }
 
-        if (Input.GetKey("w") && Grounded()==true)
 
+            if (Input.GetKey("w") && Grounded()==true)
         {
             animator.SetBool("Jump", true);
             if (betterjump)

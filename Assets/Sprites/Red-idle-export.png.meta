@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: 0024de68baff05c43acf17f3dc98cf50
+guid: cb70ed7979690e64e812ff910e1124ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6409623718828101925
-    second: slide-blue2-export_0
+      213: -988447000384369245
+    second: Red-idle-export_0
   - first:
-      213: -3918684513277241647
-    second: slide-blue2-export_1
+      213: -3455119535516114348
+    second: Red-idle-export_1
   - first:
-      213: -5715312072491218711
-    second: slide-blue2-export_2
+      213: 6728311368373461095
+    second: Red-idle-export_2
   - first:
-      213: -259939992284135732
-    second: slide-blue2-export_3
-  - first:
-      213: -8226122930252113310
-    second: slide-blue2-export_0
-  - first:
-      213: 8036245073653302770
-    second: slide-blue2-export_1
-  - first:
-      213: -6668634232829554582
-    second: slide-blue2-export_2
-  - first:
-      213: -4190743086515161303
-    second: slide-blue2-export_3
+      213: -9135032604522119474
+    second: Red-idle-export_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,7 +98,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slide-blue2-export_0
+      name: Red-idle-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a90af57c0f6dd80800000000000000
-      internalID: -8226122930252113310
+      spriteID: 3ad0acea0b45842f0800000000000000
+      internalID: -988447000384369245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_1
+      name: Red-idle-export_1
       rect:
         serializedVersion: 2
         x: 320
@@ -145,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f5861f015a768f60800000000000000
-      internalID: 8036245073653302770
+      spriteID: 452ac05a613fc00d0800000000000000
+      internalID: -3455119535516114348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_2
+      name: Red-idle-export_2
       rect:
         serializedVersion: 2
         x: 640
@@ -166,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a605f274f704473a0800000000000000
-      internalID: -6668634232829554582
+      spriteID: 7606f1a9a83cf5d50800000000000000
+      internalID: 6728311368373461095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_3
+      name: Red-idle-export_3
       rect:
         serializedVersion: 2
         x: 960
@@ -187,8 +175,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 927f657cd5d77d5c0800000000000000
-      internalID: -4190743086515161303
+      spriteID: ecef8d3ee38d93180800000000000000
+      internalID: -9135032604522119474
       vertices: []
       indices: 
       edges: []
