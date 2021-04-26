@@ -122,6 +122,12 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift) && canDash)
         {
+            if (Grounded() == false) {
+                animator.SetBool("Jump", false);
+            }
+            
+            
+            
             animator.SetBool("isDash", true);
 
             canDash = false;
@@ -137,6 +143,14 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && canSlash)
         {
+
+            if (Grounded() == false)
+            {
+                animator.SetBool("Jump", false);
+            }
+
+
+
             animator.SetTrigger("isAttacking");
 
             if (betterslash)
