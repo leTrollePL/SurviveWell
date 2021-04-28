@@ -5,8 +5,8 @@ using UnityEngine;
 public class FlyingEnemy : Enemy
 {
     // Start is called before the first frame update
+   
 
-    public int speedConstraint = 60;
     // Update is called once per frame
     public override void Update()
     {
@@ -17,7 +17,7 @@ public class FlyingEnemy : Enemy
                 this.GetComponent<SpriteRenderer>().flipX = true;
             else
                 this.GetComponent<SpriteRenderer>().flipX = false;
-            direction /= speedConstraint * direction.magnitude;
+            direction /= 50 * direction.magnitude;
             GetComponent<Transform>().position+=direction;
         }
     }
