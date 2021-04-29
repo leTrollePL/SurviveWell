@@ -18,7 +18,7 @@ public class FlyingEnemyShooter : Enemy
     {
         if (GetComponent<Renderer>().isVisible)
         {
-
+            
             Vector3 direction = getShortestPathPlace();
             Vector3 shotDirection = getShortestPath();
             //if (direction.x > 0)
@@ -30,18 +30,18 @@ public class FlyingEnemyShooter : Enemy
 
 
                 Vector2 diff = new Vector2(shotDirection.x, shotDirection.y);
-                // diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
-
-
-                eBullet.xDiff = shotDirection.x / 10;
-                eBullet.yDiff = shotDirection.y / 10;
+               // diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+              
+              
+                eBullet.xDiff = shotDirection.x/10;
+                eBullet.yDiff = shotDirection.y/10;
                 GameObject BulletClone = Instantiate(Bullet, GetComponent<Transform>().transform.position, Quaternion.identity);
                 BulletClone.SetActive(true);
                 shotTimer = 0;
             }
             if (direction.x > 0)
             {
-                // this.GetComponent<SpriteRenderer>().flipX = true;
+               // this.GetComponent<SpriteRenderer>().flipX = true;
                 RaycastHit2D rightInfo = Physics2D.Raycast(RightPoint.position, Vector2.right, distance / 100);
                 if (rightInfo.collider == true && rightInfo.collider.gameObject.layer == 8)
                 {
@@ -50,7 +50,7 @@ public class FlyingEnemyShooter : Enemy
             }
             else
             {
-                //  this.GetComponent<SpriteRenderer>().flipX = false;
+              //  this.GetComponent<SpriteRenderer>().flipX = false;
                 RaycastHit2D leftInfo = Physics2D.Raycast(LeftPoint.position, Vector2.right, distance / 100);
                 if (leftInfo.collider == true && leftInfo.collider.gameObject.layer == 8)
                 {
@@ -75,13 +75,13 @@ public class FlyingEnemyShooter : Enemy
             }
 
             direction /= speedConstraint * direction.magnitude;
-
+          
             GetComponent<Transform>().position += direction;
             shotTimer++;
-
+           
         }
     }
-    public Vector3 getShortestPathPlace()
+    public  Vector3 getShortestPathPlace()
     {
         Vector3 vector = new Vector3();
         double distW = Vector3.Distance(GController.WController.transform.position, GetComponent<Transform>().position);
@@ -89,7 +89,7 @@ public class FlyingEnemyShooter : Enemy
 
         if (distB > distW)
         {
-            double distW1 = Vector3.Distance(new Vector3(GController.WController.transform.position.x + playerDistance, GController.WController.transform.position.y + playerDistance, 0), GetComponent<Transform>().position);
+            double distW1 = Vector3.Distance(new Vector3(GController.WController.transform.position.x+playerDistance, GController.WController.transform.position.y+playerDistance, 0), GetComponent<Transform>().position);
             double distW2 = Vector3.Distance(new Vector3(GController.WController.transform.position.x - playerDistance, GController.WController.transform.position.y + playerDistance, 0), GetComponent<Transform>().position);
             if (distW1 < distW2)
                 vector = new Vector3(GController.WController.transform.position.x + playerDistance, GController.WController.transform.position.y + playerDistance, 0) - GetComponent<Transform>().position;
