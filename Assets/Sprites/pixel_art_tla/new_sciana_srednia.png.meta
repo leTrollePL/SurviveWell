@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: 0024de68baff05c43acf17f3dc98cf50
+guid: 7c0e32d791d67064a93eaf999ede25c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6409623718828101925
-    second: slide-blue2-export_0
+      213: 568509432059685693
+    second: new_sciana_srednia_0
   - first:
-      213: -3918684513277241647
-    second: slide-blue2-export_1
+      213: 6272032497170189153
+    second: new_sciana_srednia_1
   - first:
-      213: -5715312072491218711
-    second: slide-blue2-export_2
+      213: -6359443826113183014
+    second: new_sciana_srednia_2
   - first:
-      213: -259939992284135732
-    second: slide-blue2-export_3
-  - first:
-      213: -8226122930252113310
-    second: slide-blue2-export_0
-  - first:
-      213: 8036245073653302770
-    second: slide-blue2-export_1
-  - first:
-      213: -6668634232829554582
-    second: slide-blue2-export_2
-  - first:
-      213: -4190743086515161303
-    second: slide-blue2-export_3
+      213: 729668821942919837
+    second: new_sciana_srednia_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -58,15 +46,15 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -110,13 +98,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slide-blue2-export_0
+      name: new_sciana_srednia_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.6418907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b606df050c3e700800000000000000
+      internalID: 568509432059685693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_sciana_srednia_1
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 0
+        width: 159
+        height: 800
+      alignment: 9
+      pivot: {x: 0.5327442, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b0985535cba0750800000000000000
+      internalID: 6272032497170189153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: new_sciana_srednia_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 320
+        width: 800
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,71 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a90af57c0f6dd80800000000000000
-      internalID: -8226122930252113310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slide-blue2-export_1
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f5861f015a768f60800000000000000
-      internalID: 8036245073653302770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slide-blue2-export_2
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a605f274f704473a0800000000000000
-      internalID: -6668634232829554582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slide-blue2-export_3
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 0
-        width: 320
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 927f657cd5d77d5c0800000000000000
-      internalID: -4190743086515161303
+      spriteID: d92e5977ded402a00800000000000000
+      internalID: 729668821942919837
       vertices: []
       indices: 
       edges: []

@@ -5,9 +5,12 @@ using UnityEngine;
 public class FlyingEnemy : Enemy
 {
     // Start is called before the first frame update
+   
+
 
     public int speedConstraint = 60;
     public Transform UpPoint, DownPoint, LeftPoint, RightPoint;
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
     // Update is called once per frame
     public override void Update()
     {
@@ -26,6 +29,7 @@ public class FlyingEnemy : Enemy
             else
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
+
                 RaycastHit2D leftInfo = Physics2D.Raycast(LeftPoint.position, Vector2.right, distance / 100);
                 if (leftInfo.collider == true && leftInfo.collider.gameObject.layer == 8)
                 {
@@ -52,4 +56,4 @@ public class FlyingEnemy : Enemy
             GetComponent<Transform>().position+=direction;
         }
     }
-}
+}````````````````````````````
