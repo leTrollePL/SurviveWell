@@ -18,7 +18,7 @@ public class FlyingEnemy : Enemy
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
                 RaycastHit2D rightInfo = Physics2D.Raycast(RightPoint.position, Vector2.right, distance / 100);
-                if (rightInfo.collider == true && rightInfo.collider.gameObject.layer == 8)
+                if (rightInfo.collider==true&&rightInfo.collider.gameObject.layer==8)
                 {
                     direction.x = 0;
                 }
@@ -49,7 +49,7 @@ public class FlyingEnemy : Enemy
                 }
             }
             direction /= speedConstraint * direction.magnitude;
-            GetComponent<Transform>().position += direction;
+            GetComponent<Transform>().position+=direction;
         }
     }
 }
