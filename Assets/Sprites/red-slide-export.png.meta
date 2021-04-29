@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: 0024de68baff05c43acf17f3dc98cf50
+guid: ca30c37024c0d6247a5c30a60c4e9524
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6409623718828101925
-    second: slide-blue2-export_0
+      213: -8878736660369709157
+    second: red-slide-export_0
   - first:
-      213: -3918684513277241647
-    second: slide-blue2-export_1
+      213: -6348317808808418099
+    second: red-slide-export_1
   - first:
-      213: -5715312072491218711
-    second: slide-blue2-export_2
+      213: 1533080050441053271
+    second: red-slide-export_2
   - first:
-      213: -259939992284135732
-    second: slide-blue2-export_3
+      213: 3798969910114337126
+    second: red-slide-export_3
   - first:
-      213: -8226122930252113310
-    second: slide-blue2-export_0
-  - first:
-      213: 8036245073653302770
-    second: slide-blue2-export_1
-  - first:
-      213: -6668634232829554582
-    second: slide-blue2-export_2
-  - first:
-      213: -4190743086515161303
-    second: slide-blue2-export_3
+      213: 776742004587764171
+    second: red-slide-export_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slide-blue2-export_0
+      name: red-slide-export_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a90af57c0f6dd80800000000000000
-      internalID: -8226122930252113310
+      spriteID: b97ec688c0468c480800000000000000
+      internalID: -8878736660369709157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_1
+      name: red-slide-export_1
       rect:
         serializedVersion: 2
         x: 320
@@ -145,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f5861f015a768f60800000000000000
-      internalID: 8036245073653302770
+      spriteID: dc420b4769e36e7a0800000000000000
+      internalID: -6348317808808418099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_2
+      name: red-slide-export_2
       rect:
         serializedVersion: 2
         x: 640
@@ -166,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a605f274f704473a0800000000000000
-      internalID: -6668634232829554582
+      spriteID: 754e6caee28964510800000000000000
+      internalID: 1533080050441053271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide-blue2-export_3
+      name: red-slide-export_3
       rect:
         serializedVersion: 2
         x: 960
@@ -187,8 +178,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 927f657cd5d77d5c0800000000000000
-      internalID: -4190743086515161303
+      spriteID: 66143c46107a8b430800000000000000
+      internalID: 3798969910114337126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-slide-export_4
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc91491ecba87ca00800000000000000
+      internalID: 776742004587764171
       vertices: []
       indices: 
       edges: []
