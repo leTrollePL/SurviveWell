@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: 860891b5e7c8b4a458862699f2434cef
+guid: e6d28903925c19e41ba7a77f71270d2e
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2254269915906110991
+    second: deska1_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -34,23 +37,23 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 19}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -84,16 +87,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline:
-    - - {x: 2876, y: 3778}
-      - {x: 2876, y: 3780}
-      - {x: 2880, y: 3780}
-      - {x: 2802, y: 3735}
-    - - {x: 2853, y: 3658}
-      - {x: 2853, y: 3659}
-      - {x: 2860, y: 3659}
-      - {x: 2860, y: 3658}
+    sprites:
+    - serializedVersion: 2
+      name: deska1_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 4
+        width: 234
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 6, z: 21, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06fe6d7b86c84f10800000000000000
+      internalID: 2254269915906110991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
