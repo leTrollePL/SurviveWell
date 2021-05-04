@@ -109,7 +109,7 @@ public class BlackController : MonoBehaviour
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12, ForceMode2D.Impulse);
             }
             else
             {

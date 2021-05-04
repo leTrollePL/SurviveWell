@@ -17,7 +17,7 @@ public class FallingPlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("step on");
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && rb.isKinematic == true)
         {
             PlatformManager.Instance.StartCoroutine("SpawnPlatform", new Vector2(transform.position.x, transform.position.y));
             Invoke("Drop", CzasDoSpadku);

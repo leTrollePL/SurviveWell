@@ -93,9 +93,7 @@ public class WhiteController : MonoBehaviour
         {
             animator.SetBool("isSliding", false);
         }
-        if (Input.GetKey("s")) {
-            waitTime = 0.5f;
-        }
+  
 
 
             if (Input.GetKey("w") && Grounded()==true)
@@ -105,7 +103,7 @@ public class WhiteController : MonoBehaviour
             {
                 this.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 this.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 6, ForceMode2D.Impulse);
             }
             else
             {
@@ -298,6 +296,7 @@ public class WhiteController : MonoBehaviour
         if (collidingObject.tag == "Platforma" || collidingObject.tag == "MovingPlatform")
         {
             jestNaPlatformie = true;
+            Debug.Log("White step on");
         }
 
         if (collidingObject.tag == "MovingPlatform")
