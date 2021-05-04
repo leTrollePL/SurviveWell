@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     public GameObject Bullet;
     public GameObject Black;
     [SerializeField] float damage = 25f;
-    public float damageMultiplier = 1f;
+    public float damageMultiplier = 0f;
 
     //  public bool active = false;
     // Start is called before the first frame update
@@ -41,6 +41,7 @@ public class BulletController : MonoBehaviour
                 if (health != null)
                 {
                     health.DealDamage(damage*damageMultiplier);
+                    Destroy(gameObject);
                 }
             }
             else
@@ -48,7 +49,9 @@ public class BulletController : MonoBehaviour
                 var health = collidingObject.GetComponent<Health>();
                 if (health != null)
                 {
+                    Debug.Log("Bullet got eaten");
                     health.DealDamage(damage*damageMultiplier);
+                    Destroy(gameObject);
                 }
             }
             

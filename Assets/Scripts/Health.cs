@@ -16,18 +16,24 @@ public class Health : MonoBehaviour
 
     public void DealDamage(float damage)
     {
+       
         health -= damage;
         currentHealth = health;
         if (health <= 0)
         {
+            Debug.Log("Health loss");
             if (gameObject.layer == 9 || gameObject.layer == 10)
             {
-
+                Debug.Log("Health loss");
             }
             else
             {
-                if (drops) Instantiate(theDrops, dropPoint.position, dropPoint.rotation);
+                //if (drops)
+                //{
+                //    Instantiate(theDrops, dropPoint.position, dropPoint.rotation);
+                //}
                 Destroy(gameObject);
+                Debug.Log("Health loss");
             }
 
         }

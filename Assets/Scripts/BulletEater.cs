@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletEater : MonoBehaviour
 {
-    public GameController Gcontroller;
     void OnTriggerEnter2D(Collider2D collidingObject)
     {
        // Debug.Log(collidingObject.gameObject.layer);

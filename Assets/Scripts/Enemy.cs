@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public GameObject enemyObject;
     public int damage = 20;
     public int moneyWorth = 5;
-    public float speed = 0.0f;
+    public float speed = 0.001f;
     public float distance = 2f;
     public Transform GroundDetection;
     public bool movingRight;
@@ -21,20 +21,23 @@ public class Enemy : MonoBehaviour
     {
         if (GetComponent<Renderer>().isVisible)
         {
+           
             Vector3 direction = getShortestPath();
 
 
-            if (direction.magnitude < 10)
+            if (direction.magnitude < 30)
             {
+                
                 if (direction.x > 0)
                 {
                     transform.eulerAngles = new Vector3(0, -180, 0);
                 }
                 else
                     transform.eulerAngles = new Vector3(0, 0, 0);
-                RaycastHit2D groundInfo = Physics2D.Raycast(GroundDetection.position, Vector2.down, distance / 100);
+                RaycastHit2D groundInfo = Physics2D.Raycast(GroundDetection.position, Vector2.down, distance /10);
                 if (groundInfo.collider == true && groundInfo.collider.gameObject.layer == 8)
                 {
+                   // Debug.Log("hello");
                     pounceTimer++;
 
                     if (pounceTimer >= pounceReset)
@@ -54,6 +57,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
+                
                 RaycastHit2D groundInfo = Physics2D.Raycast(GroundDetection.position, Vector2.down, distance);
                 if (groundInfo.collider == false)
                 {
@@ -61,7 +65,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-
+                   
                     RaycastHit2D jumpInfo = Physics2D.Raycast(GroundDetection.position, Vector2.left, distance);
                     if (jumpInfo.collider == true)
                         if (groundInfo.collider == true && jumpInfo.collider.gameObject.layer == 8 && jumpTimer == jumpCD)
