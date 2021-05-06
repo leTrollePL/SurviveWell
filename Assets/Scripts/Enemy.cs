@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
             Vector3 direction = getShortestPath();
 
 
-            if (direction.magnitude < 30)
+            if (direction.magnitude < 20)
             {
                 
                 if (direction.x > 0)
