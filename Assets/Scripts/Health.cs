@@ -45,10 +45,11 @@ public class Health : MonoBehaviour
             }
             else
             {
-                //if (drops)
-                //{
-                //    Instantiate(theDrops, dropPoint.position, dropPoint.rotation);
-                //}
+                if (drops)
+                {
+                    GameObject droppped =Instantiate(theDrops, dropPoint.position, dropPoint.rotation);
+                    droppped.SetActive(true);
+                }
                 Destroy(gameObject);
                 Debug.Log("Health loss");
             }

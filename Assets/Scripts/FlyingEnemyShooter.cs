@@ -75,7 +75,7 @@ public class FlyingEnemyShooter : Enemy
             }
 
             direction /= speedConstraint * direction.magnitude;
-
+            if (gameObject != null)
             GetComponent<Transform>().position += direction;
             shotTimer++;
 
