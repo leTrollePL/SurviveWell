@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
             if (gameObject.layer == 9)
             {
                 Debug.Log("Health loss1");
-                pasekHP.SetHealth(health);
+                //pasekHP.SetHealth(health);
                // healthbarUI.SetHealth(health);
             }
             else if (gameObject.layer == 10)
