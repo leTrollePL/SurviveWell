@@ -29,6 +29,7 @@ public class CannonControler : MonoBehaviour
                 if (health != null)
                 {
                     health.DealDamage(damage);
+                    
                 }
             }
             else
