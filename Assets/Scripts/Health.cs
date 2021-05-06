@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
        
         health -= damage;
         currentHealth = health;
-        pasekHP.SetHealth(health);
+        //pasekHP.SetHealth(health);
         if (health <= 0)
         {
             Debug.Log("Health loss");
@@ -58,12 +58,12 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        pasekHP.SetMaxHealth(maxHealth);
+        //pasekHP.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        pasekHP.SetMaxHealth(health);
+       // pasekHP.SetMaxHealth(health);
     }
 }
