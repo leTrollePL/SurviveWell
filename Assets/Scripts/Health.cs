@@ -27,6 +27,18 @@ public class Health : MonoBehaviour
     {
        
         health -= damage;
+        if(health > 100)
+        {
+            if (gameObject.layer == 9)
+            {
+                health = 100;
+            }
+            else if (gameObject.layer == 10)
+            {
+                health = 100;
+            }
+        }
+
         currentHealth = health;
         //pasekHP.SetHealth(health);
         if (health <= 0)
