@@ -34,14 +34,17 @@ public class BulletController : MonoBehaviour
     {
         if(collidingObject.gameObject.layer != 10)
         {
-            if(collidingObject.gameObject.layer == 9)
+            if(collidingObject.gameObject.layer == 9 )
             {
-                var health = Black.GetComponent<Health>();
-                Black.GetComponent<PlayerMoney>().SubbMoney(5);
-                if (health != null)
+                if (collidingObject.gameObject.GetComponent<WhiteController>().hittable)
                 {
-                    health.DealDamage(damage*damageMultiplier);
-                    Destroy(gameObject);
+                    var health = Black.GetComponent<Health>();
+                    Black.GetComponent<PlayerMoney>().SubbMoney(5);
+                    if (health != null)
+                    {
+                        health.DealDamage(damage * damageMultiplier);
+                        Destroy(gameObject);
+                    }
                 }
             }
             else
