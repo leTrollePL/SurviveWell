@@ -11,8 +11,14 @@ public class FlyingEnemy : Enemy
     // Update is called once per frame
     public override void Update()
     {
-        if (GetComponent<Renderer>().isVisible)
+        Renderer r = GetComponent<Renderer>();
+        if (r.isVisible)
         {
+            if(r.material.color.a>0)
+            {
+                Color color = r.material.color;
+                r.material.color = new Color(color.r,color.g,color.b,color.a-0.001f);
+            }
             Vector3 direction = getShortestPath();
             if (direction.x > 0)
             {
