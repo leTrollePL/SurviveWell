@@ -25,15 +25,17 @@ public class Health : MonoBehaviour
 
     public void DealDamage(float damage)
     {
-       
+        AudiomanagerScript.PlaySound("playerhit");
         health -= damage;
         currentHealth = health;
         //pasekHP.SetHealth(health);
         if (health <= 0)
         {
+            AudiomanagerScript.PlaySound("deatchSound");
             Debug.Log("Health loss");
             if (gameObject.layer == 9)
             {
+
                 Debug.Log("Health loss1");
                 //pasekHP.SetHealth(health);
                // healthbarUI.SetHealth(health);

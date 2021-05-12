@@ -146,8 +146,14 @@ public class BlackController : MonoBehaviour
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
 
         }
+        if (cannonShotReady && magazine == 0)
+        {
+            
+        }
         if (Input.GetMouseButtonDown(0))
         {
+            AudiomanagerScript.PlaySound("fire");
+
             if (shotReady && magazine > 0 && weapon == 0)
             {
                 Vector3 blackPos = Camera.WorldToScreenPoint(blackPlayer.transform.position);
@@ -203,6 +209,7 @@ public class BlackController : MonoBehaviour
                     cannonTimer = 0;
                 }
             }
+
             blackPlayer.transform.position = new Vector3((blackPlayer.transform.position.x + movespeed), blackPlayer.transform.position.y, blackPlayer.transform.position.z);
         }
 
@@ -234,6 +241,7 @@ public class BlackController : MonoBehaviour
                 shotReady = true;
             if (shotTimer > shotCountdown)
             {
+                AudiomanagerScript.PlaySound("reloadSound");
                 shotReady = true;
                 shotTimer = 0;
                 magazine = 2;

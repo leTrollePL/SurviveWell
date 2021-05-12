@@ -141,6 +141,7 @@ public class WhiteController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && canSlash)
         {
+            AudiomanagerScript.PlaySound("meeleSound");
 
             if (Grounded() == false)
             {
