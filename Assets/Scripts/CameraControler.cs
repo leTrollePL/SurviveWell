@@ -49,7 +49,20 @@ public class CameraControler : MonoBehaviour
             }
             else
             {
-                scaleY = 2f;
+                scale = 2f;
+                if (Mathf.Abs(whitePlayer.transform.position.y - blackPlayer.transform.position.y) >30)
+                {
+                    if (whitePlayer.transform.position.y > blackPlayer.transform.position.y)
+                    {
+                        blackPlayer.GetComponent<Health>().DealDamage(10);
+                        blackPlayer.GetComponent<Transform>().position = whitePlayer.GetComponent<Transform>().position;
+                    }
+                    else
+                    {
+                        whitePlayer.GetComponent<Health>().DealDamage(10);
+                        whitePlayer.GetComponent<Transform>().position = blackPlayer.GetComponent<Transform>().position;
+                    }
+                }
             }
             scale = (scale + scaleY) / 2f;
             CCamera.orthographicSize = standardCamera * scale;
