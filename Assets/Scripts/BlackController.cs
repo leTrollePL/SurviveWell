@@ -47,6 +47,15 @@ public class BlackController : MonoBehaviour
     public float waitTime = 0.2f;
     private bool jestNaPlatformie = false;
 
+
+    private Transform aimTransform;
+
+
+    private void Awake()
+    {
+        aimTransform = transform.Find("Aim");
+    }
+
     void Start()
     {
         shotReady = true;
@@ -55,6 +64,7 @@ public class BlackController : MonoBehaviour
 
     void Update()
     {
+        
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -259,6 +269,35 @@ public class BlackController : MonoBehaviour
         }
         Blast.transform.position = blackPlayer.transform.position;
         blackPlayer.transform.localScale = new Vector3(Mathf.Abs(blackPlayer.transform.localScale.x) * direction, blackPlayer.transform.localScale.y, blackPlayer.transform.localScale.z);
+
+        Vector3 blackPosition = Camera.WorldToScreenPoint(blackPlayer.transform.position);
+
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, blackPlayer.transform.position.z);
+        Vector3 aimdirection = (mousePosition - transform.position).normalized;
+        //float anglex = Mathf.Atan2(aimdirection.y, aimdirection.x) * Mathf.Rad2Deg;
+        float anglex = AngleBetweenTwoPoints(mousePosition, blackPosition);
+        aimTransform.eulerAngles = new Vector3(0, 0, anglex);
+        Vector3 loaclSkale = Vector3.one;
+        if (direction == -1)
+        {
+            loaclSkale.x = -1;
+        }
+        else { loaclSkale.x = 1; }
+        
+        if (anglex > 90 || anglex < -90)
+        {
+            loaclSkale.y = -1f;
+        }
+        else
+        {
+            loaclSkale.y = +1f;
+
+        }
+        aimTransform.localScale = loaclSkale;
+
+
+
+
 
     }
 
