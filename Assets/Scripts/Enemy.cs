@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
                 jumpTimer++;
         }
     }
-    public void changeDirection()
+    public virtual void changeDirection()
     {
         if (movingRight == true)
             movingRight = false;
