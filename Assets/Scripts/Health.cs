@@ -23,6 +23,17 @@ public class Health : MonoBehaviour
         return health;
     }
 
+    public void odnowienieHP(float hp)
+    {
+        health += hp;
+    }
+
+    public void fullrestore()
+    {
+        health = 100f;
+    }
+
+
     public void DealDamage(float damage)
     {
         AudiomanagerScript.PlaySound("playerhit");

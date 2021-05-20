@@ -30,7 +30,7 @@ public class PlayerMoney2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score = white.GetComponent<PlayerMoney>().currentMoney();
+        score = black.GetComponent<PlayerMoney>().currentMoney();
         textdisplay.text = score.ToString();
         // score = player.GetComponents<PlayerMoney>().
 

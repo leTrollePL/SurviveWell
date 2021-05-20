@@ -38,7 +38,7 @@ public class PasekHP2 : MonoBehaviour
 
     void Update()
     {
-        currentHP = white.GetComponent<Health>().AktualneHP();
+        currentHP = black.GetComponent<Health>().AktualneHP();
         slider.value = currentHP;
     }
 }
