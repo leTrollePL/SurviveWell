@@ -45,6 +45,7 @@ public class WhiteController : MonoBehaviour
     {
         //standardCamera = CCamera.orthographicSize;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -354,7 +355,7 @@ public class WhiteController : MonoBehaviour
     }
     public bool Grounded()
     {
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 0.1f, platforma);
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 1f, platforma);
         return raycastHit.collider != null;
 
     }

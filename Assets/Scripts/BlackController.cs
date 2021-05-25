@@ -14,6 +14,8 @@ public class BlackController : MonoBehaviour
     public GameObject Cannon;
     public BulletController Ccontrol;
 
+    
+
     public Animator animator;
 
     public BoxCollider2D boxCollider2D;
@@ -50,6 +52,11 @@ public class BlackController : MonoBehaviour
 
     private Transform aimTransform;
 
+    private Vector2 colliderSize;
+    private CapsuleCollider2D cc;
+    [SerializeField]
+    private float slopeCheckDistance;
+
 
     private void Awake()
     {
@@ -59,7 +66,10 @@ public class BlackController : MonoBehaviour
     void Start()
     {
         shotReady = true;
+        cc = GetComponent<CapsuleCollider2D>(); 
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
+        colliderSize = cc.size;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -349,8 +359,31 @@ public class BlackController : MonoBehaviour
 
     public bool Grounded()
     {
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 0.1f, platforma);
+        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + 1f, platforma);
         return raycastHit.collider != null;
         //test
+    }
+
+    public void Slopecheck()
+    {
+        Vector2 checkpos = transform.position - new Vector3(0.0f, colliderSize.y / 2);
+    }
+
+    private void SlopeHorizontal(Vector2 checkPos)
+    {
+
+    }
+
+    private void SlopeVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, platforma);
+        if (hit)
+        {
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+        }
+    }
+    public void FixedUpdate()
+    {
+        Slopecheck();
     }
 }

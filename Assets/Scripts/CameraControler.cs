@@ -14,6 +14,7 @@ public class CameraControler : MonoBehaviour
     void Start()
     {
         standardCamera = CCamera.orthographicSize;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
