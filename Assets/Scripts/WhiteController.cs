@@ -337,7 +337,14 @@ public class WhiteController : MonoBehaviour
         }
 
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Spike")
+        {
+            Debug.Log("white got hit by a spike");
+            GController.BController.lives--;
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Platforma" || collision.tag == "MovingPlatform")

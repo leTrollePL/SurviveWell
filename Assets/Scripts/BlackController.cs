@@ -336,6 +336,18 @@ public class BlackController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Spike")
+        {
+            Debug.Log("Black got hit by a spike");
+
+        }
+    }
+
+
+
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "MovingPlatform")
