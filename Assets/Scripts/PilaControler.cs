@@ -29,6 +29,10 @@ public class PilaControler : MonoBehaviour
             health.DealDamage(demage);
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "kolce")
+        {
+            Destroy(gameObject);
+        }
 
     }
 }

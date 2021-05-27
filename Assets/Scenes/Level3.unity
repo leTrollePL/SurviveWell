@@ -734,7 +734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94437503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9, y: -8.3, z: 37.126564}
+  m_LocalPosition: {x: 171.9, y: 12.4, z: 37.126564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1472615791}
@@ -753,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799173515784bf041a7272f16bfb0b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   Camera: {fileID: 1757853336}
   GController: {fileID: 1973730733}
   blackPlayer: {fileID: 94437503}
@@ -3011,7 +3012,7 @@ GameObject:
   - component: {fileID: 442246960}
   m_Layer: 0
   m_Name: kolec (1)
-  m_TagString: Untagged
+  m_TagString: kolce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4054,7 +4055,7 @@ GameObject:
   - component: {fileID: 562907185}
   m_Layer: 0
   m_Name: kolec (3)
-  m_TagString: Untagged
+  m_TagString: kolce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8914,6 +8915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9354dc5ef4bef514d99d44daa56d95f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   whitePlayer: {fileID: 1626444936}
   GController: {fileID: 1973730733}
   blackPlayer: {fileID: 94437503}
@@ -9046,7 +9048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626444936}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.2199993, y: -8.289999, z: 37.126564}
+  m_LocalPosition: {x: 169.58, y: 12.41, z: 37.126564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1760542536}
@@ -9799,7 +9801,7 @@ GameObject:
   - component: {fileID: 1737725658}
   m_Layer: 0
   m_Name: kolec
-  m_TagString: Untagged
+  m_TagString: kolce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10205,7 +10207,7 @@ GameObject:
   - component: {fileID: 1841465523}
   m_Layer: 0
   m_Name: kolec (4)
-  m_TagString: Untagged
+  m_TagString: kolce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

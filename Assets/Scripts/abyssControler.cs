@@ -37,5 +37,6 @@ public class abyssControler : MonoBehaviour
             health.DealDamage(damage);
         }
 
+
     }
 }
