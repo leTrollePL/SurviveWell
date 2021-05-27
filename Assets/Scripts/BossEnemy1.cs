@@ -8,10 +8,11 @@ public class BossEnemy1 : Enemy
     public GameObject bodyPrefab;
     public GameObject Tail;
     public List<Vector3> coordinates;
-
     public Vector3 directionChoice;
+    public Vector3 predict;
     public int directionChangeTimer = 0;
     public int directionChangeReset = 5000;
+    public bool speedBump = false;
     // Start is called before the first frame update
     public void Start()
     {
@@ -25,6 +26,8 @@ public class BossEnemy1 : Enemy
         directionChoice = new Vector3(-speed, 0, 0);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 1);
         body[body.Count-1].transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1);
+        predictDirection(gameObject.transform.position+1000*directionChoice);
+        this.GetComponent<Health>().maxHealth = this.GetComponent<Health>().AktualneHP();
     }
 
     // Update is called once per frame
@@ -37,48 +40,109 @@ public class BossEnemy1 : Enemy
             if (directionChangeReset / 2 == directionChangeTimer)
             {
                 coordinates.Insert(0, directionChoice);
-                if (coordinates.Count > 6)
+                while (coordinates.Count > body.Count)
                 {
-                    coordinates.RemoveAt(6);
+                    coordinates.RemoveAt(body.Count);
                 }
             }
+            Vector3 targ = gameObject.transform.position;
+            targ.z = 0f;
+
+            Vector3 objectPos = body[0].transform.position;
+            targ.x = targ.x - objectPos.x;
+            targ.y = targ.y - objectPos.y;
+
+            float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+            body[0].transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            targ = gameObject.transform.position+ ((directionChangeReset- directionChangeTimer)*directionChoice+ 50* predict);
+            targ.z = 0f;
+            objectPos = gameObject.transform.position;
+            targ.x = targ.x - objectPos.x;
+            targ.y = targ.y - objectPos.y;
+
+            angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle ) ) ;
+
             for (int i=0;i<coordinates.Count;i++)
             {
                 body[i].transform.position += coordinates[i];
             }
-           
+            for (int i = 1; i < coordinates.Count; i++)
+            {
+                targ = body[i - 1].transform.position;
+                targ.z = 0f;
+
+                objectPos = body[i].transform.position;
+                targ.x = targ.x - objectPos.x;
+                targ.y = targ.y - objectPos.y;
+
+                angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+                body[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            }
+
+
             directionChangeTimer++;
         }
         else
         {
             coordinates.Insert(0,directionChoice);
-            changeDirection();
+            directionChoice = predict;
+            predictDirection(gameObject.transform.position+1000* directionChoice);
             directionChangeTimer = 0;
             if (coordinates.Count > 6)
             {
                 coordinates.RemoveAt(6);
             }
+           
             
         }
+
+        if (gameObject.GetComponent<Health>().AktualneHP() <= 0)
+        {
+            for (int i = 0; i < body.Count; i++)
+                Destroy(body[i]);
+            Destroy(gameObject);
+        }
+        
+            
+
+
+    }
+
+    public int getRotation(Vector3 vec)
+    {
+        int rotationMultiplier;
+        if (vec.x < 0)
+        {
+            rotationMultiplier = 0;
+        }
+        else if (vec.y < 0)
+            rotationMultiplier = 1;
+        else if (vec.x > 0)
+            rotationMultiplier = 2;
+        else
+            rotationMultiplier = 3;
+        return rotationMultiplier;
     }
     
-    public override void changeDirection()
+ 
+    public void predictDirection(Vector3 position)
     {
         List<Vector3> possiblePaths = new List<Vector3>();
-        if (gameObject.transform.position.x>235.0 && directionChoice!= new Vector3(speed, 0, 0))
+        if (position.x > 235.0 && directionChoice != new Vector3(speed, 0, 0))
             possiblePaths.Add(new Vector3(-speed, 0, 0));
         else
-             if (gameObject.transform.position.x < 325.0 && directionChoice != new Vector3(-speed, 0, 0))
+             if (position.x < 325.0 && directionChoice != new Vector3(-speed, 0, 0))
             possiblePaths.Add(new Vector3(speed, 0, 0));
-        if (gameObject.transform.position.y > 165.0 && directionChoice != new Vector3(0, speed, 0))
+        if (position.y > 165.0 && directionChoice != new Vector3(0, speed, 0))
             possiblePaths.Add(new Vector3(0, -speed, 0));
         else
-            if (gameObject.transform.position.y < 215.0 && directionChoice != new Vector3(0, -speed, 0))
+            if (position.y < 215.0 && directionChoice != new Vector3(0, -speed, 0))
             possiblePaths.Add(new Vector3(0, speed, 0));
         System.Random rand = new System.Random();
-        directionChoice = possiblePaths[rand.Next(possiblePaths.Count)];
-        
+        predict = possiblePaths[rand.Next(possiblePaths.Count)];
+
     }
-   
+
 
 }
