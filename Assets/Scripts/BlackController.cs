@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BlackController : MonoBehaviour
 {
+    [SerializeField] float damage = 10f;
+
+
+
     public Camera Camera = new Camera();
     public GameController GController;
     public GameObject blackPlayer;
@@ -341,8 +345,15 @@ public class BlackController : MonoBehaviour
         if (collision.gameObject.tag == "Spike")
         {
             Debug.Log("Black got hit by a spike");
-
+            var health = blackPlayer.GetComponent<Health>();
+            blackPlayer.GetComponent<PlayerMoney>().SubbMoney(1);
+            if (health != null)
+            {
+                health.DealDamage(damage);
+            }
         }
+
+    
     }
 
 

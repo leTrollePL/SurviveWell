@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WhiteController : MonoBehaviour
 {
+    [SerializeField] float damage = 10f;
+
     // public GameObject Camera ;
     public GameObject whitePlayer;
     public GameController GController;
@@ -342,8 +344,14 @@ public class WhiteController : MonoBehaviour
         if (collision.gameObject.tag == "Spike")
         {
             Debug.Log("white got hit by a spike");
-            GController.BController.lives--;
+            var health = whitePlayer.GetComponent<Health>();
+            whitePlayer.GetComponent<PlayerMoney>().SubbMoney(1);
+            if (health != null)
+            {
+                health.DealDamage(damage);
+            }
         }
+    
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
