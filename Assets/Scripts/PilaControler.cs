@@ -33,6 +33,9 @@ public class PilaControler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        if (collision.gameObject.tag == "KosaDestroyer")
+        {
+            Destroy(gameObject);
+        }
     }
 }

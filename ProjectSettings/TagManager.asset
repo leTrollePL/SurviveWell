@@ -9,6 +9,7 @@ TagManager:
   - Spike
   - kolce
   - pila
+  - KosaDestroyer
   layers:
   - Default
   - TransparentFX
