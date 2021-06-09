@@ -13,11 +13,14 @@ public class BossEnemy1 : Enemy
     public int directionChangeTimer = 0;
     public int directionChangeReset = 5000;
     public bool speedBump = false;
+    public float bodySize = 0.25f;
+    public int bodyLength = 11;
+
     // Start is called before the first frame update
     public void Start()
     {
        // coordinates.Add(directionChoice);
-        for (int i=0;i<5;i++)
+        for (int i=0;i<bodyLength;i++)
         {
             body.Add(bodyPrefab);
             body[i]=Instantiate(body[i], GetComponent<Transform>().transform.position, Quaternion.identity);
@@ -28,6 +31,10 @@ public class BossEnemy1 : Enemy
         body[body.Count-1].transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -1);
         predictDirection(gameObject.transform.position+1000*directionChoice);
         this.GetComponent<Health>().maxHealth = this.GetComponent<Health>().AktualneHP();
+        for (int i = 0; i < 4; i++)
+        {
+            body[i].SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -37,7 +44,7 @@ public class BossEnemy1 : Enemy
         {
             gameObject.transform.position += directionChoice;
           
-            if (directionChangeReset / 2 == directionChangeTimer)
+            if (  directionChangeTimer % (directionChangeReset / 16 )==0)
             {
                 coordinates.Insert(0, directionChoice);
                 while (coordinates.Count > body.Count)
@@ -45,6 +52,8 @@ public class BossEnemy1 : Enemy
                     coordinates.RemoveAt(body.Count);
                 }
             }
+
+          
             Vector3 targ = gameObject.transform.position;
             targ.z = 0f;
 
@@ -76,6 +85,8 @@ public class BossEnemy1 : Enemy
                 targ.x = targ.x - objectPos.x;
                 targ.y = targ.y - objectPos.y;
 
+               
+
                 angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
                 body[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             }
@@ -85,16 +96,16 @@ public class BossEnemy1 : Enemy
         }
         else
         {
-            coordinates.Insert(0,directionChoice);
+          //  coordinates.Insert(0,directionChoice);
             directionChoice = predict;
             predictDirection(gameObject.transform.position+1000* directionChoice);
             directionChangeTimer = 0;
-            if (coordinates.Count > 6)
+            while (coordinates.Count > body.Count)
             {
-                coordinates.RemoveAt(6);
+                coordinates.RemoveAt(body.Count);
             }
-           
-            
+
+
         }
 
         if (gameObject.GetComponent<Health>().AktualneHP() <= 0)

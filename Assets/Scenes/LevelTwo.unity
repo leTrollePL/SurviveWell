@@ -2676,6 +2676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799173515784bf041a7272f16bfb0b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   Camera: {fileID: 746295211}
   GController: {fileID: 889123650}
   blackPlayer: {fileID: 465654494}
@@ -7297,6 +7298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9354dc5ef4bef514d99d44daa56d95f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10
   whitePlayer: {fileID: 950847049}
   GController: {fileID: 889123650}
   blackPlayer: {fileID: 465654494}
@@ -9872,6 +9874,8 @@ MonoBehaviour:
   directionChangeTimer: 0
   directionChangeReset: 1000
   speedBump: 0
+  bodySize: 1
+  bodyLength: 64
 --- !u!114 &1234365575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9972,7 +9976,7 @@ Transform:
   m_GameObject: {fileID: 1234365573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 249.85, y: 159.52, z: 0}
-  m_LocalScale: {x: 3.3170555, y: 4.1309695, z: 1}
+  m_LocalScale: {x: 3, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 62

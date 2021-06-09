@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 9021539890273604282}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 263.242, y: 165.43, z: 0}
-  m_LocalScale: {x: 3.252072, y: 4.1564174, z: 1}
+  m_LocalScale: {x: 0.4, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -144,6 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73cad40e07569d4082b6b84b237b181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GController: {fileID: 0}
+  enemyObject: {fileID: 0}
+  damage: 20
+  moneyWorth: 5
+  speed: 0.001
+  distance: 2
+  GroundDetection: {fileID: 0}
+  movingRight: 0
+  jumpTimer: 1500
+  jumpCD: 1500
+  pounceReset: 750
+  pounceTimer: 0
 --- !u!61 &4423593046913491317
 BoxCollider2D:
   m_ObjectHideFlags: 0
