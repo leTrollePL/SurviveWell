@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LepszySkok : MonoBehaviour
 {
@@ -31,5 +32,32 @@ public class LepszySkok : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void betterjumpWhite()
+    {
+        if(white.GetComponent<PlayerMoney>().currentMoney() >= 100 && white.betterjump == false)
+        {
+            white.GetComponent<PlayerMoney>().SubbMoney(100);
+            white.betterjump = true;
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
+
+    }
+
+    public void betterjumpBlack()
+    {
+        if (black.GetComponent<PlayerMoney>().currentMoney() >= 100 && black.betterjump == false)
+        {
+            black.GetComponent<PlayerMoney>().SubbMoney(100);
+            black.betterjump = true;
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
     }
 }

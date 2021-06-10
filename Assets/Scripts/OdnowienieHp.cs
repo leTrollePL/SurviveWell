@@ -45,4 +45,31 @@ public class OdnowienieHp : MonoBehaviour
         }
         
     }
+
+    public void odnowienieWhite()
+    {
+        if (white.GetComponent<PlayerMoney>().currentMoney() >= 50 && white.GetComponent<Health>().AktualneHP() < 100.0)
+        {
+            white.GetComponent<PlayerMoney>().SubbMoney(50);
+            white.GetComponent<Health>().odnowienieHP(100);
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
+    }
+
+    public void odnowienieBlack()
+    {
+        if (black.GetComponent<PlayerMoney>().currentMoney() >= 50 && black.GetComponent<Health>().AktualneHP() < 100.0)
+        {
+            black.GetComponent<PlayerMoney>().SubbMoney(50);
+            black.GetComponent<Health>().odnowienieHP(100);
+        }
+        else
+        {
+            Debug.Log("brak hajsu");
+        }
+        
+    }
 }
