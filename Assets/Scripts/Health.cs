@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     public Transform dropPoint;
     public bool drops;
     public GameObject theDrops;
+    public GameObject koniec;
 
     public PasekHP pasekHP;
 
@@ -61,12 +62,14 @@ public class Health : MonoBehaviour
                 AudiomanagerScript.PlaySound("deatchSound");
 
                 Debug.Log("Health loss1");
+                koniec.SetActive(true);
                 //pasekHP.SetHealth(health);
                // healthbarUI.SetHealth(health);
             }
             else if (gameObject.layer == 10)
             {
                 Debug.Log("Health loss2");
+                koniec.SetActive(true);
                 //healthbarUI.SetHealth(health);
             }
             else
@@ -93,4 +96,6 @@ public class Health : MonoBehaviour
     {
        // pasekHP.SetMaxHealth(health);
     }
+
+   
 }
