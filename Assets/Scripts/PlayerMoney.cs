@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerMoney : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int money;
+    public int money = 0;
 
 
 
     void Start()
     {
-        money = 10;
+
     }
 
     // Update is called once per frame
@@ -24,6 +24,11 @@ public class PlayerMoney : MonoBehaviour
     public void addMoney(int moneyToAdd)
     {
         money += moneyToAdd;
+    }
+
+    public void setMoney(int x)
+    {
+        money = x;
     }
 
     public int currentMoney()

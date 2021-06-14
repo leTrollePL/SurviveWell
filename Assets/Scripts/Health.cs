@@ -24,6 +24,12 @@ public class Health : MonoBehaviour
         return health;
     }
 
+    public void setHp(float x)
+    {
+         health = x;
+    }
+
+
     public void odnowienieHP(float hp)
     {
         health += hp;
@@ -87,7 +93,7 @@ public class Health : MonoBehaviour
     }
     void Start()
     {
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
         //pasekHP.SetMaxHealth(maxHealth);
     }
 

@@ -37,6 +37,7 @@ public class WhiteController : MonoBehaviour
     public int slashCD = 150;
     public int lives = 3;
 
+    public GameObject dane;
 
     public Animator animator;
 
@@ -48,6 +49,17 @@ public class WhiteController : MonoBehaviour
         //standardCamera = CCamera.orthographicSize;
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
         DontDestroyOnLoad(gameObject);
+
+        dane = GameObject.Find("DaneOGrze");
+        var dane2 = dane.GetComponent<DaneOGrze>();
+        Debug.Log(dane.name);
+        var health = this.GetComponent<Health>();
+        Debug.Log(dane2.hpBialy);
+        health.setHp(dane2.hpBialy);
+        betterjump = dane2.buffBialy;
+        var hajs = this.GetComponent<PlayerMoney>();
+        hajs.money = dane2.hajsBialy;
+
     }
 
     void Update()

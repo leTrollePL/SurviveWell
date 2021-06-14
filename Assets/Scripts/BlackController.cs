@@ -18,7 +18,9 @@ public class BlackController : MonoBehaviour
     public GameObject Cannon;
     public BulletController Ccontrol;
 
-    
+    public GameObject dane;
+
+
 
     public Animator animator;
 
@@ -73,7 +75,16 @@ public class BlackController : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>(); 
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
         colliderSize = cc.size;
-        DontDestroyOnLoad(gameObject);
+
+        dane = GameObject.Find("DaneOGrze");
+        var dane2 = dane.GetComponent<DaneOGrze>();
+        Debug.Log(dane.name);
+        var health = this.GetComponent<Health>();
+        Debug.Log(dane2.hpCzasrny);
+        health.setHp(dane2.hpCzasrny);
+        betterjump = dane2.buffCzarny;
+        var hajs = this.GetComponent<PlayerMoney>();
+        hajs.money = dane2.hajsCzasrny;
     }
 
     void Update()
