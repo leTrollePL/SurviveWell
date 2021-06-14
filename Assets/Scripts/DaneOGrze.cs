@@ -17,7 +17,7 @@ public class DaneOGrze : MonoBehaviour
     public double poziomGlosnosci;
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
