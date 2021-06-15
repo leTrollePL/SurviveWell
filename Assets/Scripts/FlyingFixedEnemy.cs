@@ -14,7 +14,12 @@ public class FlyingFixedEnemy : MonoBehaviour
         Renderer r = GetComponent<Renderer>();
         if (r.isVisible)
         {
-          
+
+            if (r.material.color.a > 0)
+            {
+                Color color = r.material.color;
+                r.material.color = new Color(color.r, color.g, color.b, color.a - 0.001f);
+            }
             Vector3 direction = getShortestPath();
            
             direction /= speedConstraint * direction.magnitude;
@@ -34,5 +39,38 @@ public class FlyingFixedEnemy : MonoBehaviour
             vector = (GController.BController.transform.position - GetComponent<Transform>().position);
 
         return vector;
+    }
+    public void OnTriggerEnter2D(Collider2D collidingObject)
+    {
+        if (collidingObject.gameObject.layer == 9 && GController.WController.GetComponent<WhiteController>().hittable)
+        {
+            var health = GController.WController.GetComponent<Health>();
+            if (health != null)
+            {
+                health.DealDamage(1);
+            }
+            Vector2 diff = new Vector2(GController.WController.transform.position.x - GetComponent<Transform>().position.x, GController.WController.transform.position.y - GetComponent<Transform>().position.y);
+            diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+            GController.WController.GetComponent<Rigidbody2D>().AddForce(GController.WController.transform.up * diff.y * 160);
+            GController.WController.GetComponent<WhiteController>().movespeed += diff.x * 0.07f;
+        }
+        if (collidingObject.gameObject.layer == 10)
+        {
+            var health = GController.BController.GetComponent<Health>();
+            if (health != null)
+            {
+                health.DealDamage(1);
+            }
+            Vector2 diff = new Vector2(GController.BController.transform.position.x - GetComponent<Transform>().position.x, GController.BController.transform.position.y - GetComponent<Transform>().position.y);
+            diff = diff / Mathf.Sqrt(diff.x * diff.x + diff.y * diff.y);
+            GController.BController.GetComponent<Rigidbody2D>().AddForce(GController.BController.transform.up * diff.y * 160);
+            GController.BController.GetComponent<BlackController>().movespeed += diff.x * 0.07f;
+        }
+
+
+
+
+
+
     }
 }
