@@ -15260,7 +15260,7 @@ MonoBehaviour:
   enemyObject: {fileID: 1234365573}
   damage: 20
   moneyWorth: 5
-  speed: 0.04
+  speed: 0.02
   distance: 2
   GroundDetection: {fileID: 0}
   movingRight: 0
@@ -15276,7 +15276,7 @@ MonoBehaviour:
   directionChoice: {x: 0, y: 0, z: 0}
   predict: {x: 0, y: 0, z: 0}
   directionChangeTimer: 0
-  directionChangeReset: 500
+  directionChangeReset: 1000
   speedBump: 0
   bodySize: 1
   bodyLength: 64
@@ -15295,7 +15295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659930966ac23e1478a7f259ef947fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 2500
   maxHealth: 0
   currentHealth: 0
   dropPoint: {fileID: 0}
