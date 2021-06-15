@@ -15,8 +15,6 @@ public class BossEnemy1 : Enemy
     public bool speedBump = false;
     public float bodySize = 0.25f;
     public int bodyLength = 11;
-    public GameObject GGhostPrefab;
-    public GameObject Gcontroler;
 
     // Start is called before the first frame update
     public void Start()
@@ -107,9 +105,7 @@ public class BossEnemy1 : Enemy
                 coordinates.RemoveAt(body.Count);
             }
 
-            GameObject ghostie = Instantiate(GGhostPrefab, GetComponent<Transform>().transform.position, Quaternion.identity);
 
-            ghostie.GetComponent<FlyingFixedEnemy>().GController = GController;
         }
 
         if (gameObject.GetComponent<Health>().AktualneHP() <= 0)
