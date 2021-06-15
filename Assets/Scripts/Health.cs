@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     public bool drops;
     public GameObject theDrops;
     public GameObject koniec;
-
+    public GameObject koniecGry;
     public PasekHP pasekHP;
 
     public float AktualneHP()
@@ -77,6 +77,11 @@ public class Health : MonoBehaviour
                 Debug.Log("Health loss2");
                 koniec.SetActive(true);
                 //healthbarUI.SetHealth(health);
+            }
+            else if (gameObject.tag == "Boss")
+            {
+                Destroy(gameObject);
+                koniecGry.SetActive(true);
             }
             else
             {

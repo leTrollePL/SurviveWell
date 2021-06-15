@@ -10,6 +10,7 @@ TagManager:
   - kolce
   - pila
   - KosaDestroyer
+  - Boss
   layers:
   - Default
   - TransparentFX
