@@ -33,12 +33,13 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        dane = GameObject.Find("DaneOGrze");
+        white = GameObject.Find("White");
+        black = GameObject.Find("Black");
 
         if (collision.gameObject.layer == 10 || collision.gameObject.layer == 9)
         {
-            dane = GameObject.Find("DaneOGrze");
-            white = GameObject.Find("White");
-            black = GameObject.Find("Black");
+            
 
             var dane2 = dane.GetComponent<DaneOGrze>();
 
